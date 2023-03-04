@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>error Приложение заданий</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="blocks/head :: header"></header>
+
+<div class="container mt-5">
+    <div class="alert alert-danger">Задание менее 5 символов</div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <h1>Добавить задание</h1>
+    <form action="/task" method="post">
+        <textarea name="full_task" id="full_task" placeholder="Введите задание" class="form-control"></textarea><br>
+        <button type="submit" class="btn btn-success">Добавить задание</button>
+    </form>
+</div>
+
+<div class="container mt-5">
+    <h1>Ваши задания</h1>
+    <div th:each="el : ${full_task}" class="alert alert-warning mt-2">
+        <p th:text="${el.full_task}"/>
+        <a th:href="'/task/' + ${el.id} + '/remove'" class="btn btn-warning">Удалить</a>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>
